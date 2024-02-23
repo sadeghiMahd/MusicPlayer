@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,500;0,800;1,600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "poppins" , sans-serif;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    min-height: 100vh;
+    background: #c9ced3;
+    display: flex;
+    flex-direction: column;
+    font-family: NuNito ,sans-serif;
+    font-size: 12px;
+    overflow-x: hidden;
+}
+html{
+    scroll-behavior: smooth;
+}
+.bg-container{
+    position: fixed;
+    top: -50%;left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
+}
+.bg-container img{
+    position: absolute;
+    top: 0;left: 0;right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+    filter: blur(15px);
+    transform: scale(1.1);
+}
+.player-container{
+    height: 500px;
+    width: 400px;
+    margin: auto;
+    background: #e7e7e7;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px 5px rgba(0, 0, 0, 0.3);
+}
+.img-container{
+    width: 300px;
+    height: 300px;
+    position: relative;
+    top: -50px;left: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img-container img{
+    height: 0;width: 0;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+    opacity: 0;
+}
+.img-container img.active {
+    transition: 0.5s;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+}
+h2 {
+    font-size: 25px;
+    text-align: center;
+    margin: 0;
+}
+h3 {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 400;
+    margin: 5px 0 0;
+}
+ .progress-container {
+    background-color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 40px 20px;
+    height: 4px;
+    width: 90%;
+}
+.progress {
+    background: #ff0303;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+.duration-wrapper{
+    position: relative;
+    top: -25px;
+    display: flex;
+    justify-content: space-between;
+}
+.player-controls {
+    position: relative;
+    top: -15px;left: 63px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.fas {
+    font-size: 30px;
+    color: rgb(129,129,129);
+    cursor: pointer;
+    user-select: none;
+}
+.fas:hover {
+    filter: brightness(80%);
+}
+.main-button {
+    font-size: 40px;
+    position: relative;
+    bottom: 2px;
+    margin-right: 30px;
+}
+.fa-backward{
+    margin-right: 30px;
+    margin-left: 40px;
+}
+.fa-forward{
+    margin-right: 5px;
+}
+input#input-file{
+    display: none;
+}
+input#input-file + label {
+    color: #189AB4;
+    background-color: #e7e7e7;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
+input#input-file + label:hover {
+    background-color: #189AB4;
+    color: #fff;
+    cursor: pointer;
+}
+.input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+#btn-volume {
+    background-color: #e7e7e7;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border: none;
+    color:rgb(129,129,129) ;
+}
+#volume {
+    /* display: none; */
+    width: 50px;
+    margin-top: 5px;
+}
+#btn-volume {
+    display: block;
+}
+.volume-container{
+    display: flex;
+}
+#delete{
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #e7e7e7;
+    color: #189AB4;
+    font-weight: 600;
+    font-size: 0.90rem;
+    transition: color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+}
+#delete:hover{
+    background-color: #189AB4;
+    color: #fff;
+    cursor: pointer;
+}
+#repeat{
+    border: none;
+    background-color: #e7e7e7;
+    font-size: 20px;
+    color:rgb(129,129,129) ;
+}
+.navbar {
+    background:transparent ;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    background-image: linear-gradient(45deg, #f3ec78, #af4261);
+    background-size: 50%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-right: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    background-image: linear-gradient(45deg, #f3ec78, #af4261);
+    background-size: 100%;
+    color: #111;
+  }
+  body {
+    background: #536475;
+    font-family: serif;
+    
+    p {
+      line-height: 1.2;
+      letter-spacing: .2px;
+      font-size: 15px;
+    }
+  }
+    .box-container {
+    margin: 20px auto;
+    margin-bottom: 300px;
+    width: 80%;
+    height: 500px;
+    display: flex;
+    align-items: stretch;
+    box-shadow: 0 0 3px 5px rgba(0,0,0,0.03);
+    
+    &.right-open {
+    .box1-content {
+        flex: 0;
+        padding: 0;
+        opacity: 0;
+    }
+    .box1-side {
+        flex: 0;
+    }
+    .box2-side {
+        flex: 2;
+    }
+    .box2-content {
+        flex: 4;
+        padding: 30px 40px;
+        opacity: 1;
+    }
+    }
+}
+
+.box1-content,
+.box1-side,
+.box2-content,
+.box2-side {
+    transition: all .3s ease-out;
+    color: darkslategray;
+    overflow: hidden;
+}
+.box1-side,
+.box2-side {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    /* From https://css.glass */
+}
+
+.box1-content {
+    background: whitesmoke;
+    flex: 4;
+    color: whitesmoke;
+    padding: 30px 40px;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.23);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.3px);
+    -webkit-backdrop-filter: blur(6.3px);
+    border: 1px solid rgba(255, 255, 255, 0.52);
+}
+
+.box1-side {
+    background: #bac6d2;
+    flex: 2;
+    background-image: url(./michael-soledad-dJt4lxWy5nk-unsplash.jpg);
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.box2-side {
+    background: #a6bdbd;
+    flex: 0;
+    background-image: url(./michael-soledad-dJt4lxWy5nk-unsplash.jpg);
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.box2-content {
+    background: whitesmoke;
+    flex: 0;
+    color: whitesmoke;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.23);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.3px);
+    -webkit-backdrop-filter: blur(6.3px);
+    border: 1px solid rgba(255, 255, 255, 0.52);
+}
+
+#button {
+    background: #11526b;
+    padding: 10px 50px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.32);
+    color: white;
+    margin: 30px 0;
+}
+#title1{
+    font-family: "poppins" , sans-serif;
+    font-size: 30px;
+    background-image: linear-gradient(45deg, #f3ec78, #af4261);
+    background-size: 50%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+}
+.navbar {
+background:transparent ;
+color: #fff;
+display: flex;
+justify-content: space-between;
+position: relative;
+top: 0;
+left: 0;
+width: 100%;
+align-items: center;
+padding: 10px 20px;
+}
+
+.logo {
+font-size: 1.5rem;
+background-image: linear-gradient(45deg, #f3ec78, #af4261);
+background-size: 50%;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+list-style: none;
+display: flex;
+}
+
+.nav-links li {
+margin-right: 20px;
+}
+
+.nav-links li a {
+text-decoration: none;
+color: #fff;
+font-weight: 500;
+font-size: 16px;
+padding: 8px 12px;
+border-radius: 5px;
+transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover {
+background-image: linear-gradient(45deg, #f3ec78, #af4261);
+background-size: 100%;
+color: #111;
+}
+.body{
+    display: none;
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url(./img2.jpg);
+            background-repeat: no-repeat;
+            object-fit: cover;
+            overflow-x: hidden;
+        }
+            .box-container {
+            margin: 20px auto;
+            margin-bottom: 300px;
+            width: 80%;
+            height: 500px;
+            display: flex;
+            align-items: stretch;
+            box-shadow: 0 0 3px 5px rgba(0,0,0,0.03);
+            
+            &.right-open {
+            .box1-content {
+                flex: 0;
+                padding: 0;
+                opacity: 0;
+            }
+            .box1-side {
+                flex: 0;
+            }
+            .box2-side {
+                flex: 2;
+            }
+            .box2-content {
+                flex: 4;
+                padding: 30px 40px;
+                opacity: 1;
+            }
+            }
+        }
+        
+        .box1-content,
+        .box1-side,
+        .box2-content,
+        .box2-side {
+            transition: all .3s ease-out;
+            color: darkslategray;
+            overflow: hidden;
+        }
+        .box1-side,
+        .box2-side {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            /* From https://css.glass */
+        }
+        
+        .box1-content {
+            background: whitesmoke;
+            flex: 4;
+            color: whitesmoke;
+            padding: 30px 40px;
+            /* From https://css.glass */
+            background: rgba(255, 255, 255, 0.23);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(6.3px);
+            -webkit-backdrop-filter: blur(6.3px);
+            border: 1px solid rgba(255, 255, 255, 0.52);
+        }
+        
+        .box1-side {
+            background: #bac6d2;
+            flex: 2;
+            background-image: url(./michael-soledad-dJt4lxWy5nk-unsplash.jpg);
+            background-repeat: no-repeat;
+            object-fit: cover;
+            background-size: cover;
+            border-radius: 5px;
+        }
+        
+        .box2-side {
+            background: #a6bdbd;
+            flex: 0;
+            background-image: url(./michael-soledad-dJt4lxWy5nk-unsplash.jpg);
+            background-repeat: no-repeat;
+            object-fit: cover;
+            background-size: cover;
+            border-radius: 5px;
+        }
+        
+        .box2-content {
+            background: whitesmoke;
+            flex: 0;
+            color: whitesmoke;
+            /* From https://css.glass */
+            background: rgba(255, 255, 255, 0.23);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(6.3px);
+            -webkit-backdrop-filter: blur(6.3px);
+            border: 1px solid rgba(255, 255, 255, 0.52);
+        }
+        
+        #button {
+            background: #11526b;
+            padding: 10px 50px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.32);
+            color: white;
+            margin: 30px 0;
+        }
+        #title1{
+            font-family: "poppins" , sans-serif;
+            font-size: 30px;
+            background-image: linear-gradient(45deg, #f3ec78, #af4261);
+            background-size: 50%;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 500;
+        }
+        .navbar {
+    background:transparent ;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    background-image: linear-gradient(45deg, #f3ec78, #af4261);
+    background-size: 50%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+  }
+  
+  .nav-links li {
+    margin-right: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    background-image: linear-gradient(45deg, #f3ec78, #af4261);
+    background-size: 100%;
+    color: #111;
+  }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" style="padding-right: 10px;border-right: 5px solid #fff;">JONATHAN</div>
+        <ul class="nav-links">
+            <li><a href="./index.html" id="first">Home</a></li>
+            <li><a href="#" id="second">Library</a></li>
+            <li><a href="#">Music</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </nav>
+    <div class="body">
+        <div id="title1"><h1><b>ABOUT THIS PROJECT</b></h1></div>
+    <div class="box-container">
+        <div class="box1-content content">
+          <h1>Hello,</h1>
+          <p>Utilise outside the box thinking and try to think outside the box. Build transformation mapping and then maximise share of voice. Repurpose agile and then create a better customer experience. Funneling brand ambassadors so that as an end result, we further your reach. Leveraging customer journeys and possibly use best practice.</p>
+        </div>
+        <div class="box1-side">
+          <button class="right-button" id="button">⟶</button>
+        </div>
+        <div class="box2-side">
+          <button class="left-button" id="button">⟵</button>   
+        </div>
+        <div class="box2-content content">
+          <h1>Good Bye,</h1>
+          <p>Leveraging growth hacking while remembering to think outside the box. Engage agile and above all, be CMSable. Generate innovation yet disrupt the balance. Leading cloud computing with the aim to be CMSable. Lead core competencies with a goal to be on brand. Create brand pillars in order to get buy in.</p>
+        </div>
+      </div>
+    </div>
+      <script>
+        const containerE1 = document.querySelector('.box-container');
+        const contents = document.querySelectorAll('.content');
+        const buttons = document.querySelectorAll('#button');
+
+        buttons.forEach( button => button.addEventListener('click', function() {
+        containerE1.classList.toggle('right-open');
+        }));
+      </script>
+</body>
+</html>
