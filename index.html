@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music player</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/7f41c13b6a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="bg-container">
+        <img src="" alt="" id="background">
+    </div>
+    <nav class="navbar">
+        <div class="logo" style="padding-right: 10px;border-right: 5px solid #fff;">JONATHAN</div>
+        <ul class="nav-links">
+            <li><a href="#" id="firstLink">Home</a></li>
+            <li><a href="#" id="secondLink">Library</a></li>
+            <li><a href="#">Music</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </nav>
+    <br>
+    <div class="body">
+        <div id="title1"><h1><b>ABOUT THIS PROJECT</b></h1></div>
+    <div class="box-container">
+        <div class="box1-content content">
+          <h1>Hello,</h1>
+          <p>Utilise outside the box thinking and try to think outside the box. Build transformation mapping and then maximise share of voice. Repurpose agile and then create a better customer experience. Funneling brand ambassadors so that as an end result, we further your reach. Leveraging customer journeys and possibly use best practice.</p>
+        </div>
+        <div class="box1-side">
+          <button class="right-button" id="button">⟶</button>
+        </div>
+        <div class="box2-side">
+          <button class="left-button" id="button">⟵</button>   
+        </div>
+        <div class="box2-content content">
+          <h1>Good Bye,</h1>
+          <p>Leveraging growth hacking while remembering to think outside the box. Engage agile and above all, be CMSable. Generate innovation yet disrupt the balance. Leading cloud computing with the aim to be CMSable. Lead core competencies with a goal to be on brand. Create brand pillars in order to get buy in.</p>
+        </div>
+      </div>
+    </div>
+    <div class="player-container">
+        <div class="media">
+            <div class="img-container">
+                <img src="" alt="" id="cover" class="active">
+            </div>
+            <h2 id="title"></h2>
+            <h3 id="artist"></h3>
+            <audio src=""></audio>
+            <div id="progress-container" class="progress-container">
+                <div class="progress" id="progress"></div>
+                <div class="duration-wrapper">
+                    <span id="current-time"></span>
+                    <span id="duration"></span>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button id="repeat"><i class="material-icons">repeat</i></button>
+                <i class="fas fa-backward" id="previous" title="previous"></i>
+                <i class="fas fa-play main-button" id="play" title="play"></i>
+                <i class="fas fa-forward" id="next" title="Next"></i>
+                <div class="volume-container">
+                    <button id="btn-volume"><i class="fa-solid fa-volume-high"></i></button>
+                    <div class="volume-bar">
+                        <input type="range" min="0" max="1" step="0.01" value="1" id="volume">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input">
+            <button class="delete-button" id="delete">Delete</button>
+            <input type="file" id="input-file">
+            <label for="input-file"><i class="fa-solid fa-download"></i>&nbsp;Choose File</label>
+        </div>
+    </div>
+    </div>
+    <script>let $ = document;
+        const image = $.querySelector("#cover");
+        const title = $.querySelector("#title");
+        const artist = $.querySelector("#artist");
+        const music = $.querySelector("audio");
+        const currentTimeE1 = $.querySelector("#current-time");
+        const durationE1 = $.querySelector("#duration");
+        const progress = $.querySelector("#progress");
+        const progressContainer = $.querySelector("#progress-container");
+        const preBtn = $.querySelector("#previous");
+        const playBtn = $.querySelector("#play");
+        const nextBtn = $.querySelector("#next");
+        const background = $.querySelector("#background");
+        let Bar = $.querySelector("#btn-volume i");
+        let btn_volume = $.querySelector("#btn-volume");
+        let range = $.querySelector("#volume");
+        const deleteButtons = document.querySelectorAll('.delete-button');
+        let media = $.querySelector('.media');
+        let input = $.querySelector('.input');
+        let container = $.querySelector(".player-container");
+        let repeat = $.querySelector("#repeat");
+        let icon = $.querySelector("#repeat i");
+        const body = $.querySelector(".body");
+        let second = $.querySelector("#secondLink");
+        let first = $.querySelector("#firstLink");
+
+first.addEventListener("click", function () {
+    body.style.display = 'none';
+    container.style.display = "block";
+    let stateObj = { id: "100" };
+    history.pushState(stateObj, "index", "/index.html");
+    window.history.replaceState({}, document.title, "/index.html");
+});
+
+second.addEventListener("click", function () {
+    body.style.display = "block";
+    container.style.display = "none";
+    let stateObj = { id: "101" }; // Change the state ID for the second link
+    history.pushState(stateObj, "new_index", "/new_index.html");
+    window.history.replaceState({}, document.title, "/new_index.html");
+});
+        range.addEventListener("input", function () {
+            if (range.value === "0") {
+                Bar.classList.replace("fa-volume-high", "fa-volume-xmark");
+            } else {
+                Bar.classList.replace("fa-volume-xmark", "fa-volume-high");
+            }
+        });
+        let isrepeat = false;
+        repeat.addEventListener("click", function () {
+            if (icon.textContent === "repeat") {
+                icon.textContent = "repeat_one"
+                music.loop = true;
+            } else {
+                icon.textContent = "repeat"
+                music.loop = false;
+            }
+        })
+        btn_volume.addEventListener("click", function () {
+            if (Bar.classList.contains("fa-volume-high")) {
+                range.value = "0";
+                Bar.classList.remove("fa-volume-high");
+                Bar.classList.add("fa-volume-xmark");
+            } else {
+                range.value = "1";
+                Bar.classList.remove("fa-volume-xmark");
+                Bar.classList.add("fa-volume-high");
+            }
+        });
+
+        let songs = [
+            { path: "song1.mp3", musicName: "Lowx After life", artist: "Unknown", cover: "img1.jpg" },
+            { path: "song2.mp3", musicName: "Lowx Crystal Dreams", artist: "Unknown", cover: "img2.jpg" },
+            { path: "song3.mp3", musicName: "Lowx Just Friends.", artist: "Unknown", cover: "img3.jpg" }
+        ];
+        document.querySelector('input[type=file]').addEventListener('change', function () {
+            songs.unshift({ path: this.files[0].name, musicName: this.files[0].name.slice(0, 21), artist: "Unknown", cover: "img1.jpg" })
+            var songsJson = JSON.stringify(songs);
+            // Store the JSON string in local storage
+            localStorage.setItem('songs', songsJson);
+            loadSongs(songs[0]);
+            playSong();
+            media.style.display = 'block';
+        });
+        function myFunction() {
+            // Retrieve the JSON string from local storage
+            var storedSongsJson = localStorage.getItem('songs');
+
+            // Parse the JSON string back into an array of objects
+            var storedSongs = JSON.parse(storedSongsJson);
+
+            // Check if there are stored songs in local storage
+            if (storedSongs) {
+                // If there are stored songs, use them to repopulate your song list
+                // For example, if you have a function to add a song to your list, you can loop through the stored songs and add them back to your list
+                songs = []
+                storedSongs.forEach(function (song) {
+                    // Assuming you have a function called addSongToList to add a song to your list
+                    songs.push(song);
+                });
+            }
+        }
+        // Call myFunction when the window is loaded
+        window.onload = myFunction;
+        let isLoading = false;
+        function showName() {
+
+        }
+        function playSong() {
+            isLoading = true;
+            playBtn.classList.replace("fa-play", "fa-pause");
+            playBtn.setAttribute("title", "Pause");
+            music.play();
+        }
+        function pauseSong() {
+            isLoading = false;
+            playBtn.classList.replace("fa-pause", "fa-play");
+            playBtn.setAttribute("title", "play");
+            music.pause();
+        }
+        function playPause() {
+            if (music.paused) {
+                music.play();
+                playBtn.innerHTML = 'Pause';
+            } else {
+                music.pause();
+                playBtn.innerHTML = 'Play';
+            }
+        }
+        function playToggle() {
+            if (isLoading) {
+                pauseSong();
+            } else {
+                playSong();
+            }
+        }
+        function changeCover(cover) {
+            image.classList.remove("active");
+            setTimeout(function () {
+                image.src = cover;
+                image.classList.add("active");
+            }, 100)
+            background.src = cover;
+        }
+        function loadSongs(song) {
+            title.innerHTML = song.musicName;
+            artist.innerHTML = song.artist;
+            music.src = song.path;
+            changeCover(song.cover); // Pass the cover as an argument
+        }
+        let songIndex = 0;
+        function prevSong() {
+            songIndex--;//songIndex -= 1 ;
+            if (songIndex < 0) {
+                songIndex = songs.length - 1;
+            }
+            loadSongs(songs[songIndex])
+            playSong();
+        }
+        function nextSong() {
+            songIndex++;//songIndex += 1 ;
+            if (songIndex > songs.length - 1) {
+                songIndex = 0;
+            }
+            loadSongs(songs[songIndex])
+            playSong();
+        }
+        loadSongs(songs[songIndex]);
+        function updateProgressBar() {
+            if (isLoading) {
+                const duration = music.duration;
+                let currentTime = music.currentTime;
+                let progressPercent = (currentTime / duration) * 100;
+                progress.style.width = progressPercent + "%";
+                const durationMinutes = Math.floor(duration / 60);
+                const durationSeconds = Math.floor(duration % 60);
+                if (durationSeconds) {
+                    durationE1.innerHTML = durationMinutes + ":" + durationSeconds;
+                }
+                const currentMinutes = Math.floor(currentTime / 60);
+                let currentSeconds = Math.floor(currentTime % 60);
+                if (currentSeconds < 10) {
+                    currentSeconds = "0" + currentSeconds;
+                }
+                currentTimeE1.innerHTML = currentMinutes + ":" + currentSeconds;
+            }
+        }
+        function setProgressBar(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = music.duration;
+            music.currentTime = (clickX / width) * duration;
+        }
+        playBtn.addEventListener("click", playToggle);
+        preBtn.addEventListener("click", prevSong);
+        nextBtn.addEventListener("click", nextSong);
+        music.addEventListener("ended", nextSong);
+        music.addEventListener("timeupdate", updateProgressBar);
+        progressContainer.addEventListener("click", setProgressBar);
+        const volumeControl = document.getElementById("volume");
+        music.volume = volumeControl.value; // Set initial volume
+
+        function setVolume() {
+            music.volume = volumeControl.value;
+        }
+
+        volumeControl.addEventListener("input", setVolume);
+        deleteButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                if (songs.length !== 0) {
+                    removeSong(index);
+                    if (songs.length !== 0) {
+                        loadSongs(songs[songIndex]);
+                        playSong();
+                    } else {
+                        music.pause();
+                    }
+                }
+            });
+        });
+
+
+        function removeSong(index) {
+            songs.splice(index, 1);
+            saveSongsToLocalStorage();
+        }
+
+        function saveSongsToLocalStorage() {
+            if (songs.length !== 0) {
+                // Convert the 'songs' array to JSON and store it in local storage
+                const songsJson = JSON.stringify(songs);
+                localStorage.setItem('songs', songsJson);
+            } else {
+                // Clear the local storage
+                localStorage.clear();
+                media.style.display = 'none';
+            }
+        }
+        const containerE1 = document.querySelector('.box-container');
+        const contents = document.querySelectorAll('.content');
+        const buttons = document.querySelectorAll('#button');
+
+        buttons.forEach( button => button.addEventListener('click', function() {
+        containerE1.classList.toggle('right-open');
+        }));
+    </script>
+</body>
+
+</html>
