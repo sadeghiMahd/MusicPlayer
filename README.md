@@ -1,0 +1,1 @@
+This is my first project as js developer , In this files you gonna see some js functions which controle the whole functionality of indexFile .The script file is in the main index you can see it at the end of index.html file.GoodLuck
